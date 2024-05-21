@@ -23,6 +23,15 @@ class TestBeer(unittest.TestCase):
         # ASSERT
         self.assertTrue(c)
 
+    def test_when_19_and_on_krogen_should_be_allowed(self):
+        # ARRANGE
+        age = 19
+        loc = "krogen"
+        # ACT
+        c = canIBuyBeer(age,loc)
+        # ASSERT
+        self.assertTrue(c)
+
 
     def test_when_20_and_on_systemet_should_be_allowed(self):
         # ARRANGE

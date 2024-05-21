@@ -13,32 +13,55 @@ permissions:
 jobs:
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:    
+    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!      
 
-        
-      # lägg till create csv file (glöm inte pip install)
-      # lägg till Create JSON file
-      # Köra ehnetstester     
-      #python .\calculateTests.py 
+            
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      # Create csv file (glöm inte pip install)
+      - name: Generate CSV file
+        run: |
+          python generate.py
+
+      # Create JSON file
+      - name: Convert CSV to JSON
+        run: |
+          python csvtojson.py
+
+      # Run unit tests
+      - name: Run unit tests
+        run: |
+          python -m unittest calculateTests.py
+
       - name: Copy to dist
         run: |
           mkdir dist
           cp index.html dist/index.html
           cp data.json dist/data.json
-          cp script.js dist/script.js      
+          cp script.js dist/script.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

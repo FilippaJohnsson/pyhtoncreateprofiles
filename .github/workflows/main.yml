@@ -47,7 +47,7 @@ jobs:
       # Run unit tests
       - name: Run unit tests
         run: |
-          python -m unittest calculateTests.py
+          find . -name '*Tests.py' -exec python -m unittest {} +
 
       - name: Copy to dist
         run: |

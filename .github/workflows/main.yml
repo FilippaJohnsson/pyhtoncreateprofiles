@@ -50,10 +50,10 @@ jobs:
 
       - name: Copy to dist
         run: |
-          mkdir dist
-          cp index.html dist/index.html
-          cp data.json dist/data.json
-          cp script.js dist/script.js
+          mkdir -p dist
+          cp -f index.html dist/index.html
+          cp -f data.json dist/data.json
+          cp -f script.js dist/script.js
           
       - name: Setup Pages
         uses: actions/configure-pages@v5

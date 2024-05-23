@@ -49,6 +49,13 @@ jobs:
         run: |
           find . -name '*Tests.py' -exec python -m unittest {} +
 
+      - name: Check test results and break the build if tests fail, only for being sure.
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Unit tests failed. Breaking the build."
+            exit 1
+          fi
+
       - name: Copy to dist
         run: |
           mkdir -p dist

@@ -54,10 +54,13 @@ jobs:
           cp index.html dist/index.html
           cp data.json dist/data.json
           cp script.js dist/script.js
-
+          
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          enablement: true
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

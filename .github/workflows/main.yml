@@ -77,3 +77,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Store the URL of the deployed site as an output
+      - name: Set Pages URL
+        id: set_pages_url
+        # Only run this step if the deployment was successful
+        if: success()  
+        run: echo "::set-output name=pages_url::https://<github_username>.github.io/<repository_name>/"
+
+# Output the URL of the deployed site
+# This will be displayed as the job completion message
+# You can access it using ${{ steps.set_pages_url.outputs.pages_url }}
+    outputs:
+      pages_url: ${{ steps.set_pages_url.outputs.pages_url }}

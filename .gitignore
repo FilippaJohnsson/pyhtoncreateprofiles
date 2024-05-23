@@ -1,0 +1,15 @@
+# Ignore Visual Studio Code settings and workspace files
+.vscode/
+
+# Ignore Python byte-compiled files and cache
+__pycache__/
+
+# Ignore sensitive secret files.
+# When testing GitHub Actions workflow locally with 'act', 
+# ensure sensitive secret files, such as API tokens or credentials, 
+# are not accidentally committed to the repository.
+.secrets
+
+# Ignore specific data files
+data.json
+profiles1.csv

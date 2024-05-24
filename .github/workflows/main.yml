@@ -1,10 +1,5 @@
 name: CICD
 
-# Define variables for GitHub username and repository name
-env:
-  github_username: filippajohnsson
-  repository_name: pyhtoncreateprofiles
-
 on:
   push:
     branches: [ "main" ]
@@ -83,14 +78,8 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # Store the URL of the deployed site as an output
+      # Print the URL of the deployed site
       - name: Set Pages URL
         # Only run this step if the deployment was successful
         if: success()
-        run: echo "pages_url=https://${{ env.github_username }}.github.io/${{ env.repository_name }}/" >> $GITHUB_ENV
-
-# Output the URL of the deployed site
-# This will be displayed as the job completion message
-# You can access it using ${{ env.pages_url }}
-    env:
-      pages_url: ${{ env.pages_url }}
+        run: echo "pages_url=https://filippajohnsson.github.io/pyhtoncreateprofiles/"

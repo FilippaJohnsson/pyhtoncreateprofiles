@@ -79,7 +79,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       # Print the URL of the deployed site
-      - name: Set Pages URL
+      - name: Print Pages URL
         # Only run this step if the deployment was successful
         if: success()
         run: echo "pages_url=https://filippajohnsson.github.io/pyhtoncreateprofiles/"
